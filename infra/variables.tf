@@ -20,3 +20,8 @@ variable "common_tags" {
   description = "Common tags you want applied to all components."
 }
 
+variable "aws_route53_zone_id" {
+  description = "zone-id of an exising route53 domain zone"
+  type        = string
+}
+
