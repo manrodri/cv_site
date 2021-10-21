@@ -1,11 +1,11 @@
 resource "aws_route53_zone" "main" {
-  name = var.domain_name
+  name = local.domain_name
   tags = var.common_tags
 }
 
 resource "aws_route53_record" "root-a" {
   zone_id = aws_route53_zone.main.zone_id
-  name    = var.domain_name
+  name    = "dev.cv.${local.domain_name}"
   type    = "A"
 
   alias {
@@ -17,7 +17,7 @@ resource "aws_route53_record" "root-a" {
 
 resource "aws_route53_record" "www-a" {
   zone_id = aws_route53_zone.main.zone_id
-  name    = "www.${var.domain_name}"
+  name    = "www.dev.cv.${local.domain_name}"
   type    = "A"
 
   alias {

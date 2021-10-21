@@ -6,22 +6,28 @@ variable "region" {
 
 }
 
-variable "bucket_name" {
-  type        = string
-  description = "The name of the bucket without the www. prefix. Normally domain_name."
-}
-
-variable "domain_name" {
-  type        = string
-  description = "The domain name for the website."
-}
-
 variable "common_tags" {
-  description = "Common tags you want applied to all components."
+  type = map(string)
+
+
 }
 
-variable "aws_route53_zone_id" {
-  description = "zone-id of an exising route53 domain zone"
+variable "consul_address" {
   type        = string
+  description = "Address of the Consul server"
+  default     = "127.0.0.1"
 }
+
+variable "consul_port" {
+  type        = number
+  description = "Port Consul is running"
+  default     = 8500
+}
+
+variable "consul_datacenter" {
+  type        = string
+  description = "Consul dc"
+  default     = "dc1"
+}
+
 
