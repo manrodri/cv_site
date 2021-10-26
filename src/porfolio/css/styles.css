@@ -466,3 +466,17 @@ header {
 .social-list__link {
     padding: .5em;
 }
+
+/* individual */
+
+.portfolio-item-individual {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2em 2em;
+}
+
+.portfolio-item-individual p {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 800px;
+}
