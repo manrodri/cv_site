@@ -1,8 +1,8 @@
-# Cloudfront distribution for main s3 site.
+                      # Cloudfront distribution for main s3 site.
 resource "aws_cloudfront_distribution" "www_s3_distribution" {
   origin {
     domain_name = aws_s3_bucket.www_bucket.website_endpoint
-    origin_id   = "S3-www.${local.bucket_name}"
+    origin_id   = "S3-www.${var.bucket_name}"
 
     custom_origin_config {
       http_port              = 80
@@ -16,7 +16,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
   is_ipv6_enabled     = true
   default_root_object = "index.html"
 
-  aliases = ["www.${local.domain_name}"]
+  aliases = ["www.${var.domain_name}"]
 
   custom_error_response {
     error_caching_min_ttl = 0
@@ -28,7 +28,7 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-www.${local.bucket_name}"
+    target_origin_id = "S3-www.${var.bucket_name}"
 
     forwarded_values {
       query_string = false
@@ -57,14 +57,14 @@ resource "aws_cloudfront_distribution" "www_s3_distribution" {
     minimum_protocol_version = "TLSv1.1_2016"
   }
 
-  tags = var.common_tags
+  tags = local.common_tags
 }
 
 # Cloudfront S3 for redirect to www.
 resource "aws_cloudfront_distribution" "root_s3_distribution" {
   origin {
     domain_name = aws_s3_bucket.root_bucket.website_endpoint
-    origin_id   = "S3-.${local.bucket_name}"
+    origin_id   = "S3-.${var.bucket_name}"
     custom_origin_config {
       http_port              = 80
       https_port             = 443
@@ -76,12 +76,12 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
   enabled         = true
   is_ipv6_enabled = true
 
-  aliases = [local.domain_name]
+  aliases = [var.domain_name]
 
   default_cache_behavior {
     allowed_methods  = ["GET", "HEAD"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "S3-.${local.bucket_name}"
+    target_origin_id = "S3-.${var.bucket_name}"
 
     forwarded_values {
       query_string = true
@@ -111,5 +111,5 @@ resource "aws_cloudfront_distribution" "root_s3_distribution" {
     minimum_protocol_version = "TLSv1.1_2016"
   }
 
-  tags = var.common_tags
+  tags = local.common_tags
 }

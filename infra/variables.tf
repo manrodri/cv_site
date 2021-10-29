@@ -1,33 +1,31 @@
-variable "profile" {
-
-}
-
 variable "region" {
-
+  default = "eu-west-1"
 }
 
-variable "common_tags" {
-  type = map(string)
-
-
+variable "profile" {
+  default = "devops"
 }
 
-variable "consul_address" {
+variable "domain_name" {
+  type = string
+  default = "manrodri.com"
+}
+
+variable "bucket_name" {
   type        = string
-  description = "Address of the Consul server"
-  default     = "127.0.0.1"
+  description = "The name of the bucket without the www. prefix. Normally domain_name."
+  default = "manrodri.com"
 }
 
-variable "consul_port" {
-  type        = number
-  description = "Port Consul is running"
-  default     = 8500
-}
+############## local variables ###############
 
-variable "consul_datacenter" {
-  type        = string
-  description = "Consul dc"
-  default     = "dc1"
+locals {
+  common_tags = {
+    "Team" : "Cloud and Hosting",
+    "Lead Engineer" : "Manuel Rodriguez",
+    "Application Lead" : "Manuel Rodriguez"
+    "Project": "portfolio website"
+  }
 }
 
 

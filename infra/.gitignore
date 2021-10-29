@@ -1,5 +1,0 @@
-.terraform/
-terraform.tfsate
-terraform.tfsate.backup
-*.tfplan
-.terraform.lock.hcl
