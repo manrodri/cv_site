@@ -9,17 +9,14 @@ window.onload = () => {
 
     const acceptFn = event => {
         saveToStorage()
-        consentPopper.classList.add('hidden')
+        document.body.classList.remove('consent-open');
     }
 
     acceptBtn.addEventListener('click', acceptFn)
 
     if (shouldShowPopup()) {
         setTimeout(() => {
-            consentPopper.classList.remove('hidden')
-        }, 500)
-
-
-
+            document.body.classList.add('consent-open');
+        }, 750)
     }
 }
