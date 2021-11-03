@@ -1,4 +1,4 @@
-region = "eu-west-1"
+region  = "eu-west-1"
 profile = "devops"
 
 domain_name = "manrodri.com"

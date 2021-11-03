@@ -353,6 +353,10 @@ header {
     margin: 0 auto;
 }
 
+.about-me__body {
+    margin-right: 1em;
+}
+
 .about-me__img {
     box-shadow: var(--bs);
 }

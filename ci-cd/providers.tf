@@ -7,16 +7,16 @@ terraform {
     }
   }
 
-   backend "s3" {
-    bucket = "manrodri.com-terraform"
+  backend "s3" {
+    bucket  = "manrodri.com-terraform"
     profile = "devops"
-    key    = "profolio-website/prod/ci-cd/terraform.tfstate"
-    region = "eu-west-1"
+    key     = "profolio-website/prod/ci-cd/terraform.tfstate"
+    region  = "eu-west-1"
   }
 
 }
 
 provider "aws" {
-  region = var.region
+  region  = var.region
   profile = "devops"
 }

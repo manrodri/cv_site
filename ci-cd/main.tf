@@ -38,25 +38,11 @@ resource "aws_iam_role_policy" "example" {
     {
       "Effect": "Allow",
       "Action": [
-        "ec2:CreateNetworkInterface",
-        "ec2:DescribeDhcpOptions",
-        "ec2:DescribeNetworkInterfaces",
-        "ec2:DeleteNetworkInterface",
-        "ec2:DescribeSubnets",
-        "ec2:DescribeSecurityGroups",
-        "ec2:DescribeVpcs"
-      ],
+                "cloudfront:*"
+            ],
       "Resource": "*"
     },
-    {
-      "Effect": "Allow",
-      "Action": [
-        "ec2:CreateNetworkInterfacePermission"
-      ],
-      "Resource": [
-        "*"
-      ]
-    },
+
     {
       "Effect": "Allow",
       "Action": [
@@ -92,11 +78,11 @@ resource "aws_codebuild_project" "example" {
       value = var.bucket_name
     }
     environment_variable {
-      name = "WWW_CLOUDFRONT_DIST_ID"
+      name  = "WWW_CLOUDFRONT_DIST_ID"
       value = var.www_cloudfront_id
     }
     environment_variable {
-      name = "ROOT_CLOUDFRONT_DIST_ID"
+      name  = "ROOT_CLOUDFRONT_DIST_ID"
       value = var.root_cloudfront_id
     }
   }

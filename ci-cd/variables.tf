@@ -7,7 +7,7 @@ variable "profile" {
 }
 
 variable "domain_name" {
-  type = string
+  type    = string
   default = "www.manrodri.com"
 }
 
@@ -21,7 +21,7 @@ variable "root_cloudfront_id" {
 variable "bucket_name" {
   type        = string
   description = "The name of the bucket without the www. prefix. Normally domain_name."
-  default = "manrodri.com"
+  default     = "manrodri.com"
 }
 
 ############## local variables ###############
@@ -31,7 +31,7 @@ locals {
     "Team" : "Cloud and Hosting",
     "Lead Engineer" : "Manuel Rodriguez",
     "Application Lead" : "Manuel Rodriguez"
-    "Project": "portfolio website"
+    "Project" : "portfolio website"
   }
 }
 
