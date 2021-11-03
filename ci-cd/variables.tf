@@ -8,7 +8,14 @@ variable "profile" {
 
 variable "domain_name" {
   type = string
-  default = "manrodri.com"
+  default = "www.manrodri.com"
+}
+
+variable "www_cloudfront_id" {
+  default = "E1HCQZZMO37PIY"
+}
+variable "root_cloudfront_id" {
+  default = "EF80OFT552R90"
 }
 
 variable "bucket_name" {

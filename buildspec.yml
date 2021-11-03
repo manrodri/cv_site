@@ -1,27 +1,16 @@
 version: 0.2
 
-env:
-  variables:
-    JAVA_HOME: "/usr/lib/jvm/java-8-openjdk-amd64"
-
-
 phases:
-  install:
-    commands:
-      - echo Entered the install phase...
-      - apt-get update -y
-      - apt-get install -y maven
-    finally:
-      - echo This always runs even if the update or install command fails
-
   build:
     commands:
       - echo Entered the build phase...
+      - cd web
+      - echo updating site content ...
+      - aws s3 sync . s3://${WWW_BUCKET}
+      - echo Invalidating cache ...
+      - aws cloudfront create-invalidation --distribution-id ${WWW_CLOUDFRONT_DIST_ID} --paths "/*";
+      - aws cloudfront create-invalidation --distribution-id ${ROOT_CLOUDFRONT_DIST_ID} --paths "/*";
 
-    finally:
-      - echo This always runs even if the install command fails
   post_build:
     commands:
-      - echo Entered the post_build phase...
-      - echo Build completed on `date`
-      - echo testing again webhook
+      - echo Build finished $(date)

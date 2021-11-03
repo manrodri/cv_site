@@ -10,7 +10,7 @@ terraform {
    backend "s3" {
     bucket = "manrodri.com-terraform"
     profile = "devops"
-    key    = "profolio-website/prod/terraform.tfstate"
+    key    = "profolio-website/prod/infra/terraform.tfstate"
     region = "eu-west-1"
   }
 

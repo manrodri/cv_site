@@ -88,8 +88,16 @@ resource "aws_codebuild_project" "example" {
     image_pull_credentials_type = "CODEBUILD"
 
     environment_variable {
-      name  = "SOME_KEY1"
-      value = "SOME_VALUE1"
+      name  = "WWW_BUCKET"
+      value = var.bucket_name
+    }
+    environment_variable {
+      name = "WWW_CLOUDFRONT_DIST_ID"
+      value = var.www_cloudfront_id
+    }
+    environment_variable {
+      name = "ROOT_CLOUDFRONT_DIST_ID"
+      value = var.root_cloudfront_id
     }
   }
 
